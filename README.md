@@ -1,84 +1,64 @@
-# Unlimited Limits App
+# Unlimited Limits
 
-Unlimited Limits is a Streamlit application that helps students practice evaluating limits involving square roots and rational expressions.T
+`Unlimited Limits` is a Streamlit app for practicing limit problems involving square roots and rational expressions.
 
-## The Problem
+It was built for a technical exercise that asked for:
 
-The app presents limits of the form:
+- random equation generation on each run or refresh
+- an answer input that accepts fractions, decimals, or simplified numeric expressions
+- immediate correctness feedback
+- a clean, student-friendly interface
+- bonus explanation of the solution steps
 
-$$\lim_{x \to -1} \sqrt{\frac{x+1}{x^2 + cx + b}}$$
+## Problem Format
 
-where `b` and `c` are randomly chosen integers satisfying:
+The app generates problems of the form:
 
-1. The expression inside the square root evaluates to **0/0** at x = −1 (indeterminate form requiring simplification).
-2. After simplification, the limit equals **1/a** for some positive integer **a**.
+$$
+\lim_{x \to -1} \sqrt{\frac{x+1}{x^2 + cx + b}}
+$$
 
-### How the math works
+where the values of `b` and `c` are chosen so that:
 
-For condition 1 (0/0 form at x = −1):
-- Numerator: x + 1 = 0 at x = −1 ✓
-- Denominator: x² + cx + b = 0 at x = −1 → 1 − c + b = 0 → **b = c − 1**
+1. the expression inside the square root gives a `0/0` form at `x = -1`
+2. the limit simplifies to `1/a` for some positive integer `a`
 
-With b = c − 1, the denominator factors as:
-```
-x² + cx + (c−1) = (x+1)(x + c−1)
-```
+This is done by choosing:
 
-Cancelling the (x+1) factor:
-```
-sqrt((x+1) / ((x+1)(x+c−1))) = sqrt(1 / (x+c−1))
-```
+- `c = a^2 + 2`
+- `b = a^2 + 1`
 
-At x = −1: `sqrt(1/(c−2))`. For this to equal `1/a` (an integer reciprocal), we need `c − 2 = a²`, so:
-- **c = a² + 2**, **b = a² + 1** for any positive integer **a**
-
-The app generates problems for a ∈ {1, 2, 3, 4, 5, 6, 7}.
-
-## Setup & Running Locally
-
-### Prerequisites
-- Python 3.9+
-
-### Installation
-
-```bash
-# Clone the repo
-git clone <your-repo-url>
-cd limit_app
-
-# Create a virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Run the app
-
-```bash
-streamlit run app.py
-```
-
-The app will open in your browser at `http://localhost:8501`.
-
-## Deployment (Streamlit Community Cloud)
-
-1. Push this repo to GitHub.
-2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in.
-3. Click **New app**, select your repo and `app.py` as the entry point.
-4. Click **Deploy**.
+for random integers `a` from `1` to `7`.
 
 ## Features
 
-- **Random problem generation** — new (b, c) pair each session, or click "New Problem"
-- **Flexible answer parsing** — accepts fractions (`1/3`), decimals (`0.333`), and integers
-- **Immediate feedback** — correct/incorrect with the right answer shown
-- **Step-by-step explanation** — full solution walkthrough after every submission
-- **Sidebar help** — quick reference for accepted answer formats
+- New random problem on app load or refresh
+- `New Problem` button for another equation without reloading
+- Answer parsing for inputs such as `1/3`, `0.5`, `(2+1)/9`, or `sqrt(1/9)`
+- Immediate feedback for correct and incorrect answers
+- Step-by-step walkthrough after submission
+- Simple Streamlit interface designed around the provided wireframes
+
+## Local Setup
+
+From the repository root:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+Then open:
+
+`http://localhost:8501`
 
 ## Notes
 
-- Only the Python standard library (`fractions`, `math`, `random`) and `streamlit` are required — no heavy math packages needed.
-- The LaTex rendering is handled natively by Streamlit's `st.latex()`.
+- Main app file: [app.py](./app.py)
+- Dependencies: [requirements.txt](./requirements.txt)
+- Local-only files such as `.venv/` and Streamlit logs are ignored in `.gitignore`
 
+## Deployment
+
+This app can be deployed on Streamlit Community Cloud by connecting the GitHub repository and using `app.py` as the entrypoint.

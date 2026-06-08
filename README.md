@@ -28,13 +28,14 @@ This is done by choosing:
 - `c = a^2 + 2`
 - `b = a^2 + 1`
 
-for random integers `a` from `1` to `7`.
+for random integers `a` from `1` to `13`.
 
 ## Features
 
 - New random problem on app load or refresh
+- Shuffled problem cycle so every valid problem appears before any repeat
 - `New Problem` button for another equation without reloading
-- Answer parsing for inputs such as `1/3`, `0.5`, `(2+1)/9`, or `sqrt(1/9)`
+- Answer parsing for inputs such as `1/3`, `0.5`, or `2`
 - Immediate feedback for correct and incorrect answers
 - Step-by-step walkthrough after submission
 - Simple Streamlit interface designed around the provided wireframes

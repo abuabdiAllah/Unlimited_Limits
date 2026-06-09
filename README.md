@@ -66,7 +66,7 @@ Therefore:
 
 for positive integers `a`.
 
-In this app, `a` is limited to `1` through `13`. That keeps the problems readable, keeps the arithmetic within a familiar multiplication-table range for most students, and still provides enough variety for practice without producing coefficients that feel unnecessarily large.
+In this app, `a` is limited to `1` through `13`. That keeps the problems readable, keeps the arithmetic within a familiar multiplication-table range (12x12 or 13x13) for most students, and still provides enough variety for practice without producing coefficients that feel unnecessarily large.
 
 ## Features
 
@@ -78,7 +78,7 @@ In this app, `a` is limited to `1` through `13`. That keeps the problems readabl
 - Step-by-step walkthrough after submission
 - Simple Streamlit interface designed around the provided wireframes
 
-## Local Setup
+## Local Setup (Optional)
 
 From the repository root:
 
@@ -92,23 +92,7 @@ Then open:
 
 `http://localhost:8501`
 
-## Notes
-
-- Main app file: [app.py](./app.py)
-- Dependencies: [requirements.txt](./requirements.txt)
-- Local-only files such as `.venv/` and Streamlit logs are ignored in `.gitignore`
-
-## Deployment
-
-Live app:
-
-`https://unlimitedlimits.streamlit.app/`
-
-GitHub repository:
-
-`https://github.com/abuabdiAllah/Unlimited_Limits`
-
-The app is deployed on Streamlit Community Cloud using `app.py` as the entrypoint.
+- Note: Local-only files such as `.venv/` and Streamlit logs are ignored in `.gitignore`
 
 ## Future Improvement Ideas
 

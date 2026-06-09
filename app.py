@@ -393,7 +393,6 @@ with st.sidebar:
     st.subheader("Quick help", anchor=False)
     st.markdown(
         f"""
-        - Refreshing the page creates a new problem.
         - `New Problem` swaps in another random equation.
         - Submit your answer to check it and reveal the walkthrough.
         - Decimal answers should be rounded to {DECIMAL_PLACES} decimal places.

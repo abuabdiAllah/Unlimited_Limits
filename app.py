@@ -80,6 +80,15 @@ def format_fraction(value):
     return f"{value.numerator}/{value.denominator}"
 
 
+def format_answer_display(value):
+    fraction_text = format_fraction(value)
+    if value.denominator == 1:
+        return fraction_text
+
+    decimal_text = f"{float(value):.{DECIMAL_PLACES}f}"
+    return f"{fraction_text} ({decimal_text})"
+
+
 def reset_problem():
     b, c, a = generate_problem()
     st.session_state.b = b
@@ -268,7 +277,7 @@ if st.session_state.feedback_shown:
             else:
                 is_correct = abs(parsed_answer - correct_value) < 1e-6
             if is_correct:
-                st.success(f"Correct. The limit is {format_fraction(correct_fraction)}.")
+                st.success(f"Correct. The limit is {format_answer_display(correct_fraction)}.")
             else:
                 st.error("Not quite. Try again if you want, or use the walkthrough below.")
 
@@ -301,7 +310,7 @@ if st.session_state.feedback_shown:
             )
 
             st.info(
-                f"Final answer: {format_fraction(correct_fraction)}."
+                f"Final answer: {format_answer_display(correct_fraction)}."
             )
 
 
@@ -339,7 +348,7 @@ if st.session_state.feedback_shown:
         st.latex(
             r"\sqrt{\frac{1}{" + str(c - 2) + r"}} = \frac{1}{" + str(a) + r"}"
         )
-        st.markdown(f"Final answer: `{format_fraction(correct_fraction)}`.")
+        st.markdown(f"Final answer: `{format_answer_display(correct_fraction)}`.")
 
 
 with st.expander("How this app chooses valid problems"):

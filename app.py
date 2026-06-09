@@ -101,6 +101,9 @@ def reset_problem():
 if "b" not in st.session_state or "c" not in st.session_state or "a" not in st.session_state:
     reset_problem()
 
+if st.session_state.pop("clear_answer_input", False):
+    st.session_state.answer_input = ""
+
 b = st.session_state.b
 c = st.session_state.c
 a = st.session_state.a
@@ -127,6 +130,16 @@ st.markdown(
         font-size: 0.95rem;
         margin-top: 0.35rem;
         color: {"#475569" if light_mode else "#94a3b8"};
+    }}
+    .autofill-trap {{
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
     }}
     .sidebar-byline {{
         text-align: center;
@@ -236,7 +249,16 @@ st.markdown(
 )
 
 
-with st.form("answer_form", clear_on_submit=True):
+with st.form("answer_form", clear_on_submit=False):
+    st.markdown(
+        """
+        <div class="autofill-trap" aria-hidden="true">
+            <input type="text" name="fake_username" autocomplete="username">
+            <input type="password" name="fake_password" autocomplete="new-password">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     user_input = st.text_input(
         "Your answer",
         placeholder="Type your answer here",
@@ -250,6 +272,7 @@ with st.form("answer_form", clear_on_submit=True):
         new_problem = st.form_submit_button("New Problem", use_container_width=True)
 
 if new_problem:
+    st.session_state.clear_answer_input = True
     reset_problem()
     st.rerun()
 

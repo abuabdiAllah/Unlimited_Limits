@@ -95,12 +95,14 @@ def reset_problem():
     st.session_state.c = c
     st.session_state.a = a
     st.session_state.answer_text = ""
-    st.session_state.answer_input = ""
     st.session_state.feedback_shown = False
 
 
 if "b" not in st.session_state or "c" not in st.session_state or "a" not in st.session_state:
     reset_problem()
+
+if st.session_state.pop("clear_answer_input", False):
+    st.session_state.answer_input = ""
 
 
 b = st.session_state.b
@@ -252,6 +254,7 @@ with st.form("answer_form", clear_on_submit=True):
 
 
 if new_problem:
+    st.session_state.clear_answer_input = True
     reset_problem()
     st.rerun()
 

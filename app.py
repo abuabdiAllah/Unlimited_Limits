@@ -247,6 +247,7 @@ with st.form("answer_form", clear_on_submit=False):
         "Your answer",
         placeholder="Type your answer here",
         key=answer_input_key,
+        autocomplete="off",
     )
     left, right = st.columns(2)
     with left:

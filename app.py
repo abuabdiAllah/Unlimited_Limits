@@ -95,6 +95,7 @@ def reset_problem():
     st.session_state.c = c
     st.session_state.a = a
     st.session_state.answer_text = ""
+    st.session_state.answer_input = ""
     st.session_state.feedback_shown = False
 
 
@@ -237,11 +238,11 @@ st.markdown(
 )
 
 
-with st.form("answer_form", clear_on_submit=False):
+with st.form("answer_form", clear_on_submit=True):
     user_input = st.text_input(
         "Your answer",
-        value=st.session_state.answer_text,
         placeholder="Type your answer here",
+        key="answer_input",
     )
     left, right = st.columns(2)
     with left:

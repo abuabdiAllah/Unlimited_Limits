@@ -101,7 +101,6 @@ def reset_problem():
 if "b" not in st.session_state or "c" not in st.session_state or "a" not in st.session_state:
     reset_problem()
 
-
 b = st.session_state.b
 c = st.session_state.c
 a = st.session_state.a
@@ -242,14 +241,13 @@ with st.form("answer_form", clear_on_submit=True):
         "Your answer",
         placeholder="Type your answer here",
         key="answer_input",
-        autocomplete="off",
+        autocomplete="new-password",
     )
     left, right = st.columns(2)
     with left:
         submitted = st.form_submit_button("Check Answer", use_container_width=True)
     with right:
         new_problem = st.form_submit_button("New Problem", use_container_width=True)
-
 
 if new_problem:
     reset_problem()

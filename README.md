@@ -2,15 +2,7 @@
 
 `Unlimited Limits` is a Streamlit app for practicing limit problems involving square roots and rational expressions.
 
-It was built for a technical exercise that asked for:
-
-- random equation generation on each run or refresh
-- an answer input that accepts fractions, decimals, or plain numeric answers
-- immediate correctness feedback
-- a clean, student-friendly interface
-- bonus explanation of the solution steps
-
-## Problem Format
+## Problem Format and Derivation
 
 The app generates problems of the form:
 
@@ -117,3 +109,8 @@ GitHub repository:
 `https://github.com/abuabdiAllah/Unlimited_Limits`
 
 The app is deployed on Streamlit Community Cloud using `app.py` as the entrypoint.
+
+## Future Improvement Ideas
+
+- Add a pop-up onscreen calculator students could use if they needed
+- Add hints if the student gets the answer wrong the first few times before giving the complete walkthrough

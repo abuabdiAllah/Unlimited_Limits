@@ -98,3 +98,4 @@ Then open:
 
 - Add a pop-up onscreen calculator students could use if they needed
 - Add hints if the student gets the answer wrong the first few times before giving the complete walkthrough
+- Add unit tests to build a more robust app

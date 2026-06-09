@@ -264,6 +264,8 @@ if submitted:
     st.session_state.feedback_shown = True
 
 
+show_alternate_method = False
+
 if st.session_state.feedback_shown:
     trimmed_answer = st.session_state.answer_text.strip()
     if not trimmed_answer:
@@ -275,6 +277,7 @@ if st.session_state.feedback_shown:
                 f"I could not parse that answer. Try a fraction, decimal rounded to {DECIMAL_PLACES} places, or a plain number."
             )
         else:
+            show_alternate_method = True
             answer_format = classify_answer_format(trimmed_answer)
             if answer_format == "decimal":
                 is_correct = abs(parsed_answer - correct_value) < DECIMAL_TOLERANCE
@@ -318,7 +321,7 @@ if st.session_state.feedback_shown:
             )
 
 
-if st.session_state.feedback_shown:
+if show_alternate_method:
     with st.expander("How to solve using L'Hopital's Rule (optional alternate method)"):
         st.markdown(
             """

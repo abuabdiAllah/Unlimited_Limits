@@ -101,8 +101,8 @@ def reset_problem():
 if "b" not in st.session_state or "c" not in st.session_state or "a" not in st.session_state:
     reset_problem()
 
-if st.session_state.pop("clear_answer_input", False):
-    st.session_state.answer_input = ""
+if "answer_input_version" not in st.session_state:
+    st.session_state.answer_input_version = 0
 
 
 b = st.session_state.b
@@ -240,11 +240,13 @@ st.markdown(
 )
 
 
-with st.form("answer_form", clear_on_submit=True):
+answer_input_key = f"answer_input_{st.session_state.answer_input_version}"
+
+with st.form("answer_form", clear_on_submit=False):
     user_input = st.text_input(
         "Your answer",
         placeholder="Type your answer here",
-        key="answer_input",
+        key=answer_input_key,
     )
     left, right = st.columns(2)
     with left:
@@ -254,7 +256,7 @@ with st.form("answer_form", clear_on_submit=True):
 
 
 if new_problem:
-    st.session_state.clear_answer_input = True
+    st.session_state.answer_input_version += 1
     reset_problem()
     st.rerun()
 
@@ -262,6 +264,8 @@ if new_problem:
 if submitted:
     st.session_state.answer_text = user_input
     st.session_state.feedback_shown = True
+    st.session_state.answer_input_version += 1
+    st.rerun()
 
 
 show_alternate_method = False

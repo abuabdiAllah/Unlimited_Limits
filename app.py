@@ -265,11 +265,9 @@ with st.form("answer_form", clear_on_submit=False):
         key="answer_input",
         autocomplete="new-password",
     )
-    left, right = st.columns(2)
-    with left:
-        submitted = st.form_submit_button("Check Answer", use_container_width=True)
-    with right:
-        new_problem = st.form_submit_button("New Problem", use_container_width=True)
+    submitted = st.form_submit_button("Check Answer", use_container_width=True)
+
+new_problem = st.button("New Problem", use_container_width=True)
 
 if new_problem:
     st.session_state.clear_answer_input = True
